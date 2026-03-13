@@ -11,7 +11,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run --headless",
     "test:ci": "start-server-and-test preview http://localhost:4173 cy:run",
-    "build:ci": "npm run build && npm run test:ci"
+    "build:ci": "npm run build && npx cypress install && npm run test:ci"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",
