@@ -40,8 +40,7 @@ describe("Commit Message Generator", () => {
   });
 
   it("panicked mood is selected by default", () => {
-    cy.contains("button", "panicked")
-      .should("have.class", "bg-green-950");
+    cy.contains("button", "panicked").should("have.class", "bg-green-950");
   });
 
   it("clicking a mood selects it", () => {
