@@ -1,3 +1,7 @@
+[build]
+  command = "npm run build:ci"
+  publish = "dist"
+
 [[headers]]
   for = "/*"
   [headers.values]

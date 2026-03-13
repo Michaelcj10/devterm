@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --headless",
+    "test:ci": "start-server-and-test preview http://localhost:4173 cy:run",
+    "build:ci": "npm run build && npm run test:ci"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",
@@ -20,11 +24,13 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.0",
     "autoprefixer": "^10.4.27",
+    "cypress": "^15.11.0",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
     "postcss": "^8.5.8",
+    "start-server-and-test": "^2.1.5",
     "tailwindcss": "^4.2.1",
     "vite": "^8.0.0"
   }
