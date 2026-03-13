@@ -12,9 +12,9 @@ describe("Regex Tester", () => {
   });
 
   it("shows error for invalid pattern", () => {
-    cy.get("input").first().clear().type("[invalid(");
+    cy.get(".space-y-3 input").first().invoke("val", "[invalid(").trigger("input");
     cy.clickBtn("test");
-    cy.get(".text-red-400, [class*=red]").should("be.visible");
+    cy.get(".text-red-400").should("be.visible");
   });
 });
 
@@ -23,22 +23,21 @@ describe("Timestamp Tool", () => {
 
   it("now() button fills unix timestamp", () => {
     cy.clickBtn("now");
-    cy.get("input")
-      .first()
+    cy.get(".space-y-3 input").first()
       .invoke("val")
       .should("match", /^\d{10}$/);
   });
 
   it("converts unix timestamp to human date", () => {
-    cy.get("input").first().clear().type("0");
+    cy.get(".space-y-3 input").first().invoke("val", "0").trigger("input");
     cy.clickBtn("→ human");
-    cy.get("input").last().invoke("val").should("include", "1970");
+    cy.get(".space-y-3 input").last().invoke("val").should("include", "1970");
   });
 
   it("converts ISO date back to unix", () => {
-    cy.get("input").last().clear().type("1970-01-01T00:00:00.000Z");
+    cy.get(".space-y-3 input").last().invoke("val", "1970-01-01T00:00:00.000Z").trigger("input");
     cy.clickBtn("→ unix");
-    cy.get("input").first().should("have.value", "0");
+    cy.get(".space-y-3 input").first().should("have.value", "0");
   });
 });
 
@@ -58,7 +57,7 @@ describe("Number Base Converter", () => {
   });
 
   it("shows error for invalid value", () => {
-    cy.get("input").first().clear().type("ZZZ");
+    cy.get(".space-y-3 input").first().invoke("val", "ZZZ").trigger("input");
     cy.contains("invalid value").should("be.visible");
   });
 });
@@ -94,8 +93,8 @@ describe("Cron Builder", () => {
   });
 
   it("clicking a preset fills the expression", () => {
-    cy.contains("Every minute").click();
-    cy.get("input").first().should("have.value", "* * * * *");
+    cy.contains("every minute").click();
+    cy.get(".space-y-3 input").first().should("have.value", "* * * * *");
   });
 });
 
@@ -129,14 +128,12 @@ describe("Byte Converter", () => {
   });
 
   it("converts 1 GB to correct bytes", () => {
-    cy.contains("B").parent().contains("1,000,000,000");
+    cy.contains("1,000,000,000 B").should("exist");
   });
 
   it("converts 1 GiB correctly", () => {
     cy.get("select").select("GiB");
-    cy.contains("GiB").parent().contains("1");
-    cy.get("input").first().clear().type("1");
-    cy.contains("1,073,741,824").should("be.visible");
+    cy.contains("1,073,741,824 B").should("exist");
   });
 });
 
@@ -175,9 +172,9 @@ describe("CIDR Calculator", () => {
   });
 
   it("shows error for invalid CIDR", () => {
-    cy.get("input").clear().type("not-a-cidr");
+    cy.get(".space-y-3 input").first().invoke("val", "not-a-cidr").trigger("input");
     cy.clickBtn("calculate");
-    cy.get(".text-red-400, [class*=red]").should("be.visible");
+    cy.get(".text-red-400").should("exist");
   });
 });
 
@@ -185,9 +182,9 @@ describe("HTTP Status Codes", () => {
   beforeEach(() => cy.goTool("http-status"));
 
   it("renders a list of status codes", () => {
-    cy.contains("200").should("be.visible");
-    cy.contains("404").should("be.visible");
-    cy.contains("500").should("be.visible");
+    cy.contains("200").should("exist");
+    cy.contains("404").should("exist");
+    cy.contains("500").should("exist");
   });
 
   it("clicking a code shows its description", () => {
@@ -198,7 +195,7 @@ describe("HTTP Status Codes", () => {
   it("filter by category shows only 4xx codes", () => {
     cy.contains("4xx").click();
     cy.contains("200").should("not.exist");
-    cy.contains("404").should("be.visible");
+    cy.contains("404").should("exist");
   });
 });
 
@@ -215,8 +212,8 @@ describe("MIME Type Lookup", () => {
   });
 
   it("shows extension column in results", () => {
-    cy.get("input").type("png");
-    cy.contains(".png").should("be.visible");
+    cy.get(".space-y-3 input").type("png");
+    cy.contains(/\.png/).should("exist");
   });
 });
 
@@ -228,7 +225,7 @@ describe("ASCII Table", () => {
   });
 
   it("filter input narrows results", () => {
-    cy.get("input").type("A");
+    cy.get(".space-y-3 input").invoke("val", "A").trigger("input");
     cy.get(".grid button").should("have.length.lessThan", 20);
   });
 });

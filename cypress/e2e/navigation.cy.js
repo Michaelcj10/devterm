@@ -45,7 +45,8 @@ describe("App shell & navigation", () => {
   });
 
   it("pin button appears on hover and toggles pin", () => {
-    cy.contains("Base64").parents(".relative").first().trigger("mouseenter");
+    cy.contains("button", "Base64").closest(".relative")
+      .trigger("mouseover", { bubbles: true });
     cy.contains("button", "☆").click();
     cy.contains("★ PINNED").should("be.visible");
     // Unpin
@@ -53,8 +54,8 @@ describe("App shell & navigation", () => {
   });
 
   it("⌘K opens command palette", () => {
-    cy.get("body").type("{ctrl+k}");
-    cy.contains("search all tools").should("be.visible");
+    cy.get("body").trigger("keydown", { key: "k", ctrlKey: true, bubbles: true });
+    cy.get('.fixed input[placeholder*="search"]').should("be.visible");
   });
 
   it("command palette search returns results", () => {
@@ -64,10 +65,10 @@ describe("App shell & navigation", () => {
   });
 
   it("command palette closes on Escape", () => {
-    cy.get("body").type("{ctrl+k}");
-    cy.contains("search all tools").should("be.visible");
-    cy.get("body").type("{esc}");
-    cy.contains("search all tools").should("not.exist");
+    cy.get("body").trigger("keydown", { key: "k", ctrlKey: true, bubbles: true });
+    cy.get('.fixed input[placeholder*="search"]').should("be.visible");
+    cy.get("body").trigger("keydown", { key: "Escape", bubbles: true });
+    cy.get('.fixed input[placeholder*="search"]').should("not.exist");
   });
 
   it("share button copies link", () => {

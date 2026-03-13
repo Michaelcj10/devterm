@@ -12,7 +12,7 @@ Cypress.Commands.add("toolTextarea", () => cy.get("textarea").first());
 
 // Clear and type into the first textarea
 Cypress.Commands.add("typeInTool", (text) => {
-  cy.get("textarea").first().clear().type(text, { delay: 0 });
+  cy.get("textarea").first().clear().type(text, { delay: 0, parseSpecialCharSequences: false });
 });
 
 // Click a button by its visible text (partial match)

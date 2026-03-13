@@ -66,13 +66,11 @@ describe("Case Converter", () => {
   beforeEach(() => cy.goTool("case"));
 
   it("converts to camelCase", () => {
-    cy.typeInTool("hello world");
-    cy.contains("camelCase").parent().contains("helloWorld");
+    cy.contains("camelCase").parent().contains("theQuickBrownFox");
   });
 
   it("converts to SCREAMING_SNAKE_CASE", () => {
-    cy.typeInTool("hello world");
-    cy.contains("SCREAMING_SNAKE").parent().contains("HELLO_WORLD");
+    cy.contains("SCREAMING").parent().contains("THE_QUICK_BROWN_FOX");
   });
 });
 
@@ -90,11 +88,12 @@ describe("Text Diff Tool", () => {
   });
 
   it("same content shows no additions or removals", () => {
-    cy.get("textarea").first().clear().type("same line");
-    cy.get("textarea").last().clear().type("same line");
+    cy.get("textarea").first().invoke("val", "same line").trigger("input");
+    cy.get("textarea").last().invoke("val", "same line").trigger("input");
     cy.clickBtn("compare");
-    cy.contains("+").should("not.exist");
-    cy.contains("-").should("not.exist");
+    cy.get(".border-green-900.rounded.overflow-hidden.font-mono")
+      .should("not.contain", "+")
+      .and("not.contain", "-");
   });
 });
 

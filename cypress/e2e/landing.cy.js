@@ -13,7 +13,7 @@ describe("Landing page", () => {
 
   it("renders boot log terminal block", () => {
     cy.contains("booting").should("be.visible");
-    cy.contains("[  OK  ]").should("be.visible");
+    cy.contains(/OK.*loaded/).should("be.visible");
   });
 
   it("OPEN TOOLBOX button navigates to a tool", () => {

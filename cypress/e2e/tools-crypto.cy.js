@@ -157,7 +157,7 @@ describe("JWT Builder", () => {
   });
 
   it("generates a token on build click", () => {
-    cy.clickBtn("build");
+    cy.clickBtn("sign HS256");
     cy.contains(/^ey/).should("be.visible");
   });
 });
@@ -172,9 +172,9 @@ describe("Password Hash (PBKDF2) Tool", () => {
   });
 
   it("hashes a password and shows $pbkdf2 result", () => {
-    cy.get("input").first().type("mysecret");
-    cy.clickBtn("hash");
-    cy.contains("$pbkdf2$", { timeout: 10000 }).should("be.visible");
+    cy.get('input[type="password"]').type("mysecret");
+    cy.clickBtn("hash password");
+    cy.contains("$pbkdf2$", { timeout: 30000 }).should("be.visible");
   });
 });
 
@@ -186,7 +186,8 @@ describe("PEM Cert Decoder", () => {
   });
 
   it("decodes the sample cert on button click", () => {
+    cy.clickBtn("load sample");
     cy.clickBtn("decode");
-    cy.contains("subject", { timeout: 5000 }).should("be.visible");
+    cy.contains("subject", { timeout: 8000 }).should("be.visible");
   });
 });

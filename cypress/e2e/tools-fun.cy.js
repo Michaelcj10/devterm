@@ -11,7 +11,9 @@ describe("Excuse Generator", () => {
 
   it("clicking generate shows an excuse", () => {
     cy.clickBtn("generate excuse");
-    cy.get(".text-green-300", { timeout: 1000 }).should("not.be.empty");
+    cy.get("div.text-green-300.min-h-14", { timeout: 2000 })
+      .invoke("text")
+      .should("have.length.greaterThan", 5);
   });
 
   it("generates a different excuse on second click", () => {
