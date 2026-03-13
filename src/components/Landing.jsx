@@ -151,7 +151,7 @@ export default function Landing({ nav }) {
 
   return (
     <div
-      className="min-h-screen bg-black text-green-400 font-mono"
+      className="min-h-screen bg-neutral-900 text-green-400 font-mono"
       style={{
         backgroundImage:
           "repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,80,0.015) 2px,rgba(0,255,80,0.015) 4px)",
@@ -160,7 +160,7 @@ export default function Landing({ nav }) {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-black/90 backdrop-blur-sm border-b border-green-900 py-2.5"
+            ? "bg-neutral-900/95 backdrop-blur-sm border-b border-green-900 py-2.5"
             : "bg-transparent border-b border-transparent py-4"
         }`}
       >

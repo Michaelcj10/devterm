@@ -171,7 +171,7 @@ export default function App() {
 
   return (
     <div
-      className="flex h-screen bg-black text-green-400 font-mono overflow-hidden"
+      className="flex h-screen bg-neutral-900 text-green-400 font-mono overflow-hidden"
       style={{
         backgroundImage:
           "repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,80,0.01) 2px,rgba(0,255,80,0.01) 4px)",
@@ -362,7 +362,7 @@ export default function App() {
       <main className="flex-1 overflow-y-auto flex flex-col">
         {Tool ? (
           <>
-            <div className="sticky top-0 z-10 bg-black border-b border-green-900 px-6 py-3 flex items-center justify-between shrink-0">
+            <div className="sticky top-0 z-10 bg-neutral-900 border-b border-green-900 px-6 py-3 flex items-center justify-between shrink-0">
               <div>
                 {toolCat && (
                   <div className="text-xs font-mono text-green-600 mb-0.5">
