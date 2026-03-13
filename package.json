@@ -13,7 +13,8 @@
     "test:unit": "jest --config jest.config.cjs",
     "test:ci": "start-server-and-test preview http://localhost:4173 cy:run",
     "build:ci": "npm run build && npm run test:unit && npx cypress install && npm run test:ci",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "analyze": "vite build --mode analyze"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",
@@ -44,6 +45,7 @@
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
     "postcss": "^8.5.8",
+    "rollup-plugin-visualizer": "^5.14.0",
     "start-server-and-test": "^2.1.5",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",

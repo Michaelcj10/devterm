@@ -29,7 +29,7 @@ const SidebarBtn = memo(function SidebarBtn({
               : "text-green-500 hover:text-green-300 hover:bg-green-950"
         }`}
       >
-        <span className="w-6 shrink-0 text-cyan-600">{m.icon}</span>
+        <span className="w-6 shrink-0 text-cyan-400">{m.icon}</span>
         <span className="flex-1">{m.label}</span>
       </button>
       {(hover || pinned) && (

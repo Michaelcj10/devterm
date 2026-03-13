@@ -83,7 +83,7 @@ export default function CommandPalette({ onNav, onClose, history }) {
               onClick={() => go(id)}
               className={`w-full text-left px-4 py-2.5 flex items-center gap-3 border-0 cursor-pointer font-mono text-xs transition-colors ${i === sel ? "bg-green-900 text-green-200" : "text-green-600 hover:bg-green-950 hover:text-green-300"}`}
             >
-              <span className="text-cyan-600 w-8 shrink-0">{m?.icon}</span>
+              <span className="text-cyan-400 w-8 shrink-0">{m?.icon}</span>
               <span className="text-green-300 w-32 shrink-0">{m?.label}</span>
               <span className="text-green-500 flex-1 truncate">
                 {!q && history.find((h) => h.id === id)?.lastInput ? (

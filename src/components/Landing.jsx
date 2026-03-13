@@ -161,7 +161,7 @@ export default function Landing({ nav }) {
     },
     {
       t: "[ WARN ] excuse generator ........ still won't hold up in court",
-      c: "text-cyan-600",
+      c: "text-cyan-400",
     },
     { t: "╔══════════════════════════════════════════╗", c: "text-green-500" },
     { t: "║  > ready. choose your weapon._           ║", c: "text-cyan-400" },
@@ -250,7 +250,7 @@ export default function Landing({ nav }) {
         </div>
         {CATS.map((cat) => (
           <div key={cat.id} className="mb-10">
-            <div className="text-cyan-600 text-xs font-bold tracking-widest mb-3">
+            <div className="text-cyan-400 text-xs font-bold tracking-widest mb-3">
               // {cat.label}
             </div>
             <div
@@ -267,7 +267,7 @@ export default function Landing({ nav }) {
                     onClick={() => nav("/" + id)}
                     className="bg-neutral-950 hover:bg-green-950 border border-green-900 hover:border-green-700 rounded p-3 text-left cursor-pointer transition-all group"
                   >
-                    <div className="font-mono text-sm text-cyan-600 mb-1 group-hover:text-cyan-400">
+                    <div className="font-mono text-sm text-cyan-400 mb-1">
                       {m.icon}
                     </div>
                     <div className="font-bold text-xs text-green-400 mb-1">

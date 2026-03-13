@@ -2,6 +2,7 @@ import { Component, ReactNode, ErrorInfo } from "react";
 
 interface Props {
   children: ReactNode;
+  toolId?: string;
 }
 
 interface State {
@@ -20,7 +21,7 @@ export default class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(err: Error, info: ErrorInfo): void {
-    console.error("[ErrorBoundary] Tool render crashed:", err, info);
+    console.error(`[ErrorBoundary] Tool "${this.props.toolId ?? 'unknown'}" crashed:`, err, info);
   }
 
   render(): ReactNode {
