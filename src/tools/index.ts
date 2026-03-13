@@ -41,7 +41,10 @@ const QrCodeTool = lazy(() => import("./QrCodeTool"));
 const ExcuseGenTool = lazy(() => import("./ExcuseGenTool"));
 const CommitGenTool = lazy(() => import("./CommitGenTool"));
 
-const TOOLS: Record<string, LazyExoticComponent<ComponentType<ToolProps>>> = {
+// Tools are .jsx files so TypeScript infers their props as required any.
+// Using ComponentType<any> avoids contravariance errors while keeping
+// the ToolProps interface available for typed consumers.
+const TOOLS: Record<string, LazyExoticComponent<ComponentType<any>>> = {
   json: JsonTool,
   base64: Base64Tool,
   hash: HashTool,
