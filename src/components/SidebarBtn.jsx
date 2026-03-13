@@ -29,7 +29,7 @@ const SidebarBtn = memo(function SidebarBtn({
               : "text-green-500 hover:text-green-300 hover:bg-green-950"
         }`}
       >
-        <span className="w-6 shrink-0 text-yellow-700">{m.icon}</span>
+        <span className="w-6 shrink-0 text-cyan-600">{m.icon}</span>
         <span className="flex-1">{m.label}</span>
       </button>
       {(hover || pinned) && (
@@ -38,7 +38,7 @@ const SidebarBtn = memo(function SidebarBtn({
             e.stopPropagation();
             onTogglePin(id);
           }}
-          className="absolute right-1 text-xs border-0 bg-transparent cursor-pointer font-mono text-green-900 hover:text-yellow-600 px-1"
+          className="absolute right-1 text-xs border-0 bg-transparent cursor-pointer font-mono text-green-900 hover:text-cyan-500 px-1"
         >
           {pinned ? "★" : "☆"}
         </button>

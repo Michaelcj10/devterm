@@ -301,7 +301,7 @@ export default function App() {
                 <>
                   {pins.length > 0 && (
                     <div className="mb-3">
-                      <div className="px-2 py-1 text-xs font-bold text-yellow-800 tracking-widest">
+                      <div className="px-2 py-1 text-xs font-bold text-cyan-700 tracking-widest">
                         ★ PINNED
                       </div>
                       {pins.map(
@@ -323,7 +323,7 @@ export default function App() {
                   )}
                   {CATS.map((cat) => (
                     <div key={cat.id} className="mb-3">
-                      <div className="px-2 py-1 text-xs font-bold text-yellow-800 tracking-widest flex items-center justify-between">
+                      <div className="px-2 py-1 text-xs font-bold text-cyan-700 tracking-widest flex items-center justify-between">
                         <span>// {cat.label}</span>
                         <span className="text-green-600 font-normal">
                           {cat.ids.filter((id) => META[id]).length}
@@ -370,7 +370,7 @@ export default function App() {
                   </div>
                 )}
                 <div className="text-sm font-bold text-green-300 flex items-center gap-2">
-                  <span className="text-yellow-700 font-mono font-normal text-xs w-7 shrink-0">
+                  <span className="text-cyan-600 font-mono font-normal text-xs w-7 shrink-0">
                     {meta?.icon}
                   </span>
                   {meta?.label}
