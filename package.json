@@ -10,8 +10,9 @@
     "preview": "vite preview",
     "cy:open": "cypress open",
     "cy:run": "cypress run --headless",
+    "test:unit": "jest --config jest.config.cjs",
     "test:ci": "start-server-and-test preview http://localhost:4173 cy:run",
-    "build:ci": "npm run build && npx cypress install && npm run test:ci"
+    "build:ci": "npm run build && npm run test:unit && npx cypress install && npm run test:ci"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",
@@ -19,16 +20,24 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.0",
+    "@babel/preset-react": "^7.28.5",
     "@eslint/js": "^9.39.4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.0",
     "autoprefixer": "^10.4.27",
+    "babel-jest": "^30.3.0",
     "cypress": "^15.11.0",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
     "postcss": "^8.5.8",
     "start-server-and-test": "^2.1.5",
     "tailwindcss": "^4.2.1",
