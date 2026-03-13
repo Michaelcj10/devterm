@@ -107,12 +107,31 @@ export default function Landing({ nav }) {
   const total = Object.keys(META).length;
   const [scrolled, setScrolled] = useState(false);
   const [settings, setSettings] = useState(false);
+  const [typed, setTyped] = useState("");
+  const [dotPhase, setDotPhase] = useState(0);
+  const HERO_TEXT = "DEVTERM";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (typed.length < HERO_TEXT.length) {
+      const t = setTimeout(
+        () => setTyped(HERO_TEXT.slice(0, typed.length + 1)),
+        90,
+      );
+      return () => clearTimeout(t);
+    }
+  }, [typed]);
+
+  useEffect(() => {
+    if (typed.length < HERO_TEXT.length) return;
+    const t = setInterval(() => setDotPhase((p) => (p + 1) % 4), 380);
+    return () => clearInterval(t);
+  }, [typed]);
 
   const BOOT = [
     { t: "DEVTERM v9000.0.2 — booting...", c: "text-green-600" },
@@ -197,7 +216,10 @@ export default function Landing({ nav }) {
             className="text-6xl font-black tracking-tighter text-green-400 mb-1"
             style={{ textShadow: "0 0 30px #4ade80, 0 0 60px #16a34a" }}
           >
-            DEVTERM
+            {typed}
+            <span className="text-green-700">
+              {["", ".", "..", "..."][dotPhase]}
+            </span>
           </div>
           <div className="text-green-500 text-sm">
             // {total} tools · no backend · no tracking · ⌘K to search
