@@ -58,7 +58,7 @@ export default function CommandPalette({ onNav, onClose, history }) {
           <span className="text-green-600 mr-2 font-mono text-sm">$</span>
           <input
             ref={ref}
-            className="flex-1 bg-transparent font-mono text-green-300 outline-none text-sm placeholder-green-900"
+            className="flex-1 bg-transparent font-mono text-green-300 outline-none text-sm placeholder-green-600"
             placeholder="search all tools..."
             value={q}
             onChange={(e) => {

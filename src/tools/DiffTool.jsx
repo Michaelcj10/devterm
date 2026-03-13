@@ -1,14 +1,19 @@
 import { useState } from "react";
 import { Btn, TA, Lbl, Row } from "../components/ui";
 
-export default function DiffTool() {
+export default function DiffTool({ init, onInput } = {}) {
+  const _p = (() => {
+    try { return JSON.parse(init || "{}"); } catch { return {}; }
+  })();
   const [a, setA] = useState(
-    "the quick brown fox\njumps over the lazy dog\nno bugs in this code",
+    _p.a !== undefined ? _p.a : "the quick brown fox\njumps over the lazy dog\nno bugs in this code",
   );
   const [b, setB] = useState(
-    "the quick red fox\njumps over the lazy cat\none or two bugs in this code\nextra line nobody asked for",
+    _p.b !== undefined ? _p.b : "the quick red fox\njumps over the lazy cat\none or two bugs in this code\nextra line nobody asked for",
   );
   const [diff, setDiff] = useState([]);
+  const hiA = (v) => { setA(v); onInput && onInput(JSON.stringify({ a: v, b })); };
+  const hiB = (v) => { setB(v); onInput && onInput(JSON.stringify({ a, b: v })); };
   const cmp = () => {
     const la = a.split("\n"),
       lb = b.split("\n"),
@@ -29,7 +34,7 @@ export default function DiffTool() {
   };
   const SYM = { same: " ", add: "+", rem: "-", mod: "~" };
   const SC = {
-    same: "text-green-900",
+    same: "text-green-500",
     add: "text-green-500",
     rem: "text-red-500",
     mod: "text-yellow-500",
@@ -39,11 +44,11 @@ export default function DiffTool() {
       <div className="grid grid-cols-2 gap-3">
         <div>
           <Lbl>original (A)</Lbl>
-          <TA value={a} onChange={setA} rows={7} />
+          <TA value={a} onChange={hiA} rows={7} />
         </div>
         <div>
           <Lbl>modified (B)</Lbl>
-          <TA value={b} onChange={setB} rows={7} />
+          <TA value={b} onChange={hiB} rows={7} />
         </div>
       </div>
       <Row>

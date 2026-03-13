@@ -71,7 +71,7 @@ export default function TimestampTool({ init }) {
               key={k}
               className="bg-black border border-green-900 rounded p-2"
             >
-              <div className="text-xs text-green-800 mb-0.5 font-mono">{k}</div>
+              <div className="text-xs text-green-500 mb-0.5 font-mono">{k}</div>
               <div className="font-mono text-xs text-green-300">{v}</div>
             </div>
           ))}

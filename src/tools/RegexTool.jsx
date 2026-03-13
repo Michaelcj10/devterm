@@ -3,8 +3,12 @@ import { Btn, TA, Lbl, Row, Msg } from "../components/ui";
 import { INP } from "../constants";
 
 export default function RegexTool({ init, onInput }) {
-  const [pat, setPat] = useState(init || "(\\w+)@([\\w.]+)");
-  const [flags, setFlags] = useState("gi");
+  const _rp = (() => {
+    if (!init) return {};
+    try { return JSON.parse(init); } catch { return { pat: init }; }
+  })();
+  const [pat, setPat] = useState(_rp.pat !== undefined ? _rp.pat : "(\\w+)@([\\w.]+)");
+  const [flags, setFlags] = useState(_rp.flags !== undefined ? _rp.flags : "gi");
   const [text, setText] = useState(
     "Contact hello@example.com or admin@test.org for help.",
   );
@@ -12,7 +16,11 @@ export default function RegexTool({ init, onInput }) {
   const [err, setErr] = useState("");
   const hi = (v) => {
     setPat(v);
-    onInput && onInput(v);
+    onInput && onInput(JSON.stringify({ pat: v, flags }));
+  };
+  const hiFlags = (v) => {
+    setFlags(v);
+    onInput && onInput(JSON.stringify({ pat, flags: v }));
   };
   const run = () => {
     try {
@@ -57,7 +65,7 @@ export default function RegexTool({ init, onInput }) {
           <input
             className={INP}
             value={flags}
-            onChange={(e) => setFlags(e.target.value)}
+            onChange={(e) => hiFlags(e.target.value)}
           />
         </div>
       </div>
@@ -87,7 +95,7 @@ export default function RegexTool({ init, onInput }) {
                 ),
               )
             ) : (
-              <span className="text-green-900">no matches</span>
+              <span className="text-green-500">no matches</span>
             )}
           </div>
           {result.map((m, i) => (

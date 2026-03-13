@@ -2,16 +2,19 @@ import { useState } from "react";
 import { Btn, CopyBtn, TA, Lbl, Row, Msg, MonoBox } from "../components/ui";
 import { INP } from "../constants";
 
-export default function JwtBuilderTool() {
+export default function JwtBuilderTool({ init, onInput } = {}) {
+  const _jp = (() => { try { return JSON.parse(init || "{}"); } catch { return {}; } })();
   const [header, setHeader] = useState(
-    '{\n  "alg": "HS256",\n  "typ": "JWT"\n}',
+    _jp.header || '{\n  "alg": "HS256",\n  "typ": "JWT"\n}',
   );
   const [payload, setPayload] = useState(
-    '{\n  "sub": "1234567890",\n  "name": "John Doe",\n  "iat": ""\n}',
+    _jp.payload || '{\n  "sub": "1234567890",\n  "name": "John Doe",\n  "iat": ""\n}',
   );
   const [secret, setSecret] = useState("your-256-bit-secret");
   const [token, setToken] = useState("");
   const [err, setErr] = useState("");
+  const hiHeader = (v) => { setHeader(v); onInput && onInput(JSON.stringify({ header: v, payload })); };
+  const hiPayload = (v) => { setPayload(v); onInput && onInput(JSON.stringify({ header, payload: v })); };
   const build = async () => {
     try {
       const h = JSON.parse(header);
@@ -50,11 +53,11 @@ export default function JwtBuilderTool() {
       <div className="grid grid-cols-2 gap-3">
         <div>
           <Lbl>header (JSON)</Lbl>
-          <TA value={header} onChange={setHeader} rows={5} />
+          <TA value={header} onChange={hiHeader} rows={5} />
         </div>
         <div>
           <Lbl>payload (JSON)</Lbl>
-          <TA value={payload} onChange={setPayload} rows={5} />
+          <TA value={payload} onChange={hiPayload} rows={5} />
         </div>
       </div>
       <Lbl>secret (HS256)</Lbl>

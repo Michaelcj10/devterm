@@ -58,7 +58,7 @@ export default function HttpStatusTool() {
               {code}
             </span>
             <span className="text-green-300">{name}</span>
-            <span className="text-green-800 ml-2">— {desc}</span>
+            <span className="text-green-500 ml-2">— {desc}</span>
           </button>
         ))}
       </div>

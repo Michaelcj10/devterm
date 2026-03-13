@@ -1,4 +1,9 @@
-import { lazy } from "react";
+import { lazy, ComponentType, LazyExoticComponent } from "react";
+
+export interface ToolProps {
+  init?: string;
+  onInput?: (v: string) => void;
+}
 
 const JsonTool = lazy(() => import("./JsonTool"));
 const Base64Tool = lazy(() => import("./Base64Tool"));
@@ -36,7 +41,7 @@ const QrCodeTool = lazy(() => import("./QrCodeTool"));
 const ExcuseGenTool = lazy(() => import("./ExcuseGenTool"));
 const CommitGenTool = lazy(() => import("./CommitGenTool"));
 
-const TOOLS = {
+const TOOLS: Record<string, LazyExoticComponent<ComponentType<ToolProps>>> = {
   json: JsonTool,
   base64: Base64Tool,
   hash: HashTool,

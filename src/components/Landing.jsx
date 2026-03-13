@@ -163,9 +163,9 @@ export default function Landing({ nav }) {
       t: "[ WARN ] excuse generator ........ still won't hold up in court",
       c: "text-cyan-600",
     },
-    { t: "╔══════════════════════════════════════════╗", c: "text-green-900" },
+    { t: "╔══════════════════════════════════════════╗", c: "text-green-500" },
     { t: "║  > ready. choose your weapon._           ║", c: "text-cyan-400" },
-    { t: "╚══════════════════════════════════════════╝", c: "text-green-900" },
+    { t: "╚══════════════════════════════════════════╝", c: "text-green-500" },
   ];
 
   return (

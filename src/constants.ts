@@ -1,4 +1,22 @@
-export const CATS = [
+export interface ToolMeta {
+  label: string;
+  icon: string;
+  desc: string;
+}
+
+export interface Cat {
+  id: string;
+  label: string;
+  ids: string[];
+}
+
+export interface ButtonStyles {
+  p: string;
+  s: string;
+  d: string;
+}
+
+export const CATS: Cat[] = [
   {
     id: "enc",
     label: "ENCODING & ESCAPING",
@@ -54,7 +72,7 @@ export const CATS = [
   { id: "fun", label: "ACTUALLY USELESS", ids: ["excuse", "commit"] },
 ];
 
-export const META = {
+export const META: Record<string, ToolMeta> = {
   base64: {
     label: "Base64",
     icon: "b64",
@@ -126,7 +144,7 @@ export const META = {
     desc: "Beautify your JSON crimes before the PR review.",
   },
   "json-to-ts": {
-    label: "JSON → TypeScript",
+    label: "JSON \u2192 TypeScript",
     icon: "<T>",
     desc: "Paste JSON. Get interfaces. Save 10 minutes.",
   },
@@ -147,7 +165,7 @@ export const META = {
   },
   lorem: {
     label: "Lorem Ipsum",
-    icon: "¶",
+    icon: "\u00b6",
     desc: "Placeholder text for ideas you'll never finish.",
   },
   "log-remover": {
@@ -217,7 +235,7 @@ export const META = {
   },
   "qr-code": {
     label: "QR Code",
-    icon: "▣",
+    icon: "\u25a3",
     desc: "Encode any URL or text to a scannable QR.",
   },
   excuse: {
@@ -232,13 +250,13 @@ export const META = {
   },
 };
 
-export const INP =
+export const INP: string =
   "w-full bg-black border border-green-900 rounded p-2 font-mono text-sm text-green-300 outline-none focus:border-green-600 focus-visible:ring-1 focus-visible:ring-green-500/30";
 
-export const SEL =
+export const SEL: string =
   "bg-black border border-green-900 text-green-400 rounded px-2 py-1.5 text-xs font-mono outline-none cursor-pointer focus:border-green-600 focus-visible:ring-1 focus-visible:ring-green-500/30";
 
-export const BS = {
+export const BS: ButtonStyles = {
   p: "bg-green-800 hover:bg-green-700 text-green-100 border border-green-700",
   s: "bg-transparent border border-green-900 text-green-600 hover:border-green-600 hover:text-green-300",
   d: "bg-transparent border border-red-900 text-red-600 hover:border-red-700 hover:text-red-400",

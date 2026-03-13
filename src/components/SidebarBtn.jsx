@@ -38,7 +38,7 @@ const SidebarBtn = memo(function SidebarBtn({
             e.stopPropagation();
             onTogglePin(id);
           }}
-          className="absolute right-1 text-xs border-0 bg-transparent cursor-pointer font-mono text-green-900 hover:text-cyan-500 px-1"
+          className="absolute right-1 text-xs border-0 bg-transparent cursor-pointer font-mono text-green-500 hover:text-cyan-500 px-1"
         >
           {pinned ? "★" : "☆"}
         </button>

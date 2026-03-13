@@ -39,7 +39,7 @@ export default function ExcuseGenTool() {
   return (
     <div className="space-y-4 text-center">
       <div className="py-6">
-        <div className="text-xs font-mono text-green-800 mb-2">
+        <div className="text-xs font-mono text-green-500 mb-2">
           // your alibi, generated
         </div>
         <div
@@ -47,7 +47,7 @@ export default function ExcuseGenTool() {
           style={{ transition: "opacity 0.2s" }}
         >
           {excuse || (
-            <span className="text-green-900">
+            <span className="text-green-500">
               press the button. you know you want to.
             </span>
           )}

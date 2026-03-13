@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Lbl, ResultRow } from "../components/ui";
 import { INP, SEL } from "../constants";
 
-export default function ByteConverterTool() {
+export default function ByteConverterTool({ init, onInput } = {}) {
   const UNITS = [
     ["B", 1],
     ["KB", 1e3],
@@ -14,8 +14,15 @@ export default function ByteConverterTool() {
     ["TB", 1e12],
     ["TiB", 1099511627776],
   ];
-  const [val, setVal] = useState("1");
-  const [unit, setUnit] = useState("GB");
+  const _bp = (() => {
+    if (!init) return {};
+    const parts = init.split(":");
+    return parts.length === 2 ? { val: parts[0], unit: parts[1] } : { val: init };
+  })();
+  const [val, setVal] = useState(_bp.val || "1");
+  const [unit, setUnit] = useState(_bp.unit || "GB");
+  const hiVal = (v) => { setVal(v); onInput && onInput(v + ":" + unit); };
+  const hiUnit = (v) => { setUnit(v); onInput && onInput(val + ":" + v); };
   const bytes = parseFloat(val) * (UNITS.find((u) => u[0] === unit)?.[1] || 1);
   const fmt = (n) => {
     if (n === 0) return "0";
@@ -31,7 +38,7 @@ export default function ByteConverterTool() {
           <input
             className={INP}
             value={val}
-            onChange={(e) => setVal(e.target.value)}
+            onChange={(e) => hiVal(e.target.value)}
           />
         </div>
         <div>
@@ -39,7 +46,7 @@ export default function ByteConverterTool() {
           <select
             className={SEL + " h-9"}
             value={unit}
-            onChange={(e) => setUnit(e.target.value)}
+            onChange={(e) => hiUnit(e.target.value)}
           >
             {UNITS.map(([u]) => (
               <option key={u} value={u}>

@@ -69,7 +69,7 @@ export default function JsonToTsTool({ init, onInput }) {
           <span className="text-xs font-mono text-green-700">export</span>
         </label>
         <div className="flex items-center gap-1.5">
-          <span className="text-xs font-mono text-green-800">prefix:</span>
+          <span className="text-xs font-mono text-green-500">prefix:</span>
           <input
             className="bg-black border border-green-900 rounded px-2 py-1 font-mono text-xs text-green-300 outline-none w-10 focus:border-green-600"
             value={pfx}

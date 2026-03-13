@@ -21,7 +21,7 @@ export default function NumberBaseTool({ init, onInput }) {
     <div className="space-y-3">
       <div className="flex gap-2 items-end">
         <div className="flex-1">
-          <div className="text-xs font-bold text-green-800 tracking-widest mb-1 font-mono">
+          <div className="text-xs font-bold text-green-500 tracking-widest mb-1 font-mono">
             // value
           </div>
           <input
@@ -31,7 +31,7 @@ export default function NumberBaseTool({ init, onInput }) {
           />
         </div>
         <div>
-          <div className="text-xs font-bold text-green-800 tracking-widest mb-1 font-mono">
+          <div className="text-xs font-bold text-green-500 tracking-widest mb-1 font-mono">
             // from base
           </div>
           <select

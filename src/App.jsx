@@ -12,6 +12,7 @@ import { CATS, META } from "./constants";
 import CommandPalette from "./components/CommandPalette";
 import Landing from "./components/Landing";
 import SidebarBtn from "./components/SidebarBtn";
+import ErrorBoundary from "./components/ErrorBoundary";
 import TOOLS from "./tools/index";
 
 function useDebounce(value, ms) {
@@ -255,7 +256,7 @@ export default function App() {
               <div className="relative">
                 <input
                   ref={searchRef}
-                  className="w-full bg-black border border-green-900 rounded px-2.5 py-1.5 pr-6 text-xs font-mono text-green-300 outline-none focus:border-green-600 focus-visible:ring-1 focus-visible:ring-green-500/30 placeholder-green-900"
+                  className="w-full bg-black border border-green-900 rounded px-2.5 py-1.5 pr-6 text-xs font-mono text-green-300 outline-none focus:border-green-600 focus-visible:ring-1 focus-visible:ring-green-500/30 placeholder-green-600"
                   placeholder="$ grep... (press /)"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
@@ -406,26 +407,27 @@ export default function App() {
               </div>
             </div>
             <div className="p-6 max-w-4xl mx-auto w-full">
-              <Suspense
-                fallback={
-                  <div className="space-y-3 animate-pulse">
-                    <div className="h-2.5 bg-green-950 rounded w-1/4" />
-                    <div className="h-20 bg-green-950 rounded" />
-                    <div className="flex gap-2">
-                      <div className="h-7 bg-green-950 rounded w-20" />
-                      <div className="h-7 bg-green-950 rounded w-16" />
+              <ErrorBoundary key={toolId}>
+                <Suspense
+                  fallback={
+                    <div className="space-y-3 animate-pulse">
+                      <div className="h-2.5 bg-green-950 rounded w-1/4" />
+                      <div className="h-20 bg-green-950 rounded" />
+                      <div className="flex gap-2">
+                        <div className="h-7 bg-green-950 rounded w-20" />
+                        <div className="h-7 bg-green-950 rounded w-16" />
+                      </div>
+                      <div className="h-20 bg-green-950 rounded" />
+                      <div className="h-2.5 bg-green-950 rounded w-2/5" />
                     </div>
-                    <div className="h-20 bg-green-950 rounded" />
-                    <div className="h-2.5 bg-green-950 rounded w-2/5" />
-                  </div>
-                }
-              >
-                <Tool
-                  key={toolId}
-                  init={saved[toolId] || initVal}
-                  onInput={handleInput}
-                />
-              </Suspense>
+                  }
+                >
+                  <Tool
+                    init={saved[toolId] || initVal}
+                    onInput={handleInput}
+                  />
+                </Suspense>
+              </ErrorBoundary>
             </div>
           </>
         ) : (
