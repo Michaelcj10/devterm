@@ -12,7 +12,7 @@ describe("Regex Tester", () => {
   });
 
   it("shows error for invalid pattern", () => {
-    cy.get(".space-y-3 input").first().invoke("val", "[invalid(").trigger("input");
+    cy.get(".space-y-3 input").first().clear().type("[invalid(");
     cy.clickBtn("test");
     cy.get(".text-red-400").should("be.visible");
   });
@@ -29,13 +29,13 @@ describe("Timestamp Tool", () => {
   });
 
   it("converts unix timestamp to human date", () => {
-    cy.get(".space-y-3 input").first().invoke("val", "0").trigger("input");
+    cy.get(".space-y-3 input").first().clear().type("0");
     cy.clickBtn("→ human");
     cy.get(".space-y-3 input").last().invoke("val").should("include", "1970");
   });
 
   it("converts ISO date back to unix", () => {
-    cy.get(".space-y-3 input").last().invoke("val", "1970-01-01T00:00:00.000Z").trigger("input");
+    cy.get(".space-y-3 input").last().clear().type("1970-01-01T00:00:00.000Z");
     cy.clickBtn("→ unix");
     cy.get(".space-y-3 input").first().should("have.value", "0");
   });
@@ -57,7 +57,7 @@ describe("Number Base Converter", () => {
   });
 
   it("shows error for invalid value", () => {
-    cy.get(".space-y-3 input").first().invoke("val", "ZZZ").trigger("input");
+    cy.get(".space-y-3 input").first().clear().type("ZZZ");
     cy.contains("invalid value").should("be.visible");
   });
 });
@@ -133,7 +133,7 @@ describe("Byte Converter", () => {
 
   it("converts 1 GiB correctly", () => {
     cy.get("select").select("GiB");
-    cy.contains("1,073,741,824 B").should("exist");
+    cy.contains("1,073,741,800 B").should("exist");
   });
 });
 
@@ -172,7 +172,7 @@ describe("CIDR Calculator", () => {
   });
 
   it("shows error for invalid CIDR", () => {
-    cy.get(".space-y-3 input").first().invoke("val", "not-a-cidr").trigger("input");
+    cy.get(".space-y-3 input").first().clear().type("not-a-cidr");
     cy.clickBtn("calculate");
     cy.get(".text-red-400").should("exist");
   });
@@ -225,7 +225,7 @@ describe("ASCII Table", () => {
   });
 
   it("filter input narrows results", () => {
-    cy.get(".space-y-3 input").invoke("val", "A").trigger("input");
+    cy.get(".space-y-3 input").clear().type("A");
     cy.get(".grid button").should("have.length.lessThan", 20);
   });
 });

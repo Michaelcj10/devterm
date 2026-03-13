@@ -66,7 +66,7 @@ describe("Case Converter", () => {
   beforeEach(() => cy.goTool("case"));
 
   it("converts to camelCase", () => {
-    cy.contains("camelCase").parent().contains("theQuickBrownFox");
+    cy.contains("theQuickBrownFoxJumpsOverTheLazyDog").should("exist");
   });
 
   it("converts to SCREAMING_SNAKE_CASE", () => {
@@ -88,8 +88,22 @@ describe("Text Diff Tool", () => {
   });
 
   it("same content shows no additions or removals", () => {
-    cy.get("textarea").first().invoke("val", "same line").trigger("input");
-    cy.get("textarea").last().invoke("val", "same line").trigger("input");
+    cy.get("textarea").first().then(($el) => {
+      const el = $el[0];
+      const setter = Object.getOwnPropertyDescriptor(
+        el.ownerDocument.defaultView.HTMLTextAreaElement.prototype, "value"
+      ).set;
+      setter.call(el, "same line");
+      el.dispatchEvent(new el.ownerDocument.defaultView.InputEvent("input", { bubbles: true }));
+    });
+    cy.get("textarea").last().then(($el) => {
+      const el = $el[0];
+      const setter = Object.getOwnPropertyDescriptor(
+        el.ownerDocument.defaultView.HTMLTextAreaElement.prototype, "value"
+      ).set;
+      setter.call(el, "same line");
+      el.dispatchEvent(new el.ownerDocument.defaultView.InputEvent("input", { bubbles: true }));
+    });
     cy.clickBtn("compare");
     cy.get(".border-green-900.rounded.overflow-hidden.font-mono")
       .should("not.contain", "+")

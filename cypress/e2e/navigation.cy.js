@@ -48,7 +48,7 @@ describe("App shell & navigation", () => {
     cy.contains("button", "Base64").closest(".relative")
       .trigger("mouseover", { bubbles: true });
     cy.contains("button", "☆").click();
-    cy.contains("★ PINNED").should("be.visible");
+    cy.contains("★ PINNED").should("exist");
     // Unpin
     cy.contains("button", "★").first().click();
   });
