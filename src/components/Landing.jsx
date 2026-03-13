@@ -121,7 +121,7 @@ export default function Landing({ nav }) {
     if (typed.length < HERO_TEXT.length) {
       const t = setTimeout(
         () => setTyped(HERO_TEXT.slice(0, typed.length + 1)),
-        90,
+        160,
       );
       return () => clearTimeout(t);
     }
@@ -129,7 +129,7 @@ export default function Landing({ nav }) {
 
   useEffect(() => {
     if (typed.length < HERO_TEXT.length) return;
-    const t = setInterval(() => setDotPhase((p) => (p + 1) % 4), 380);
+    const t = setInterval(() => setDotPhase((p) => (p + 1) % 4), 600);
     return () => clearInterval(t);
   }, [typed]);
 
@@ -187,7 +187,11 @@ export default function Landing({ nav }) {
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="text-green-400 font-black font-mono tracking-tighter text-lg cursor-pointer bg-transparent border-0 p-0 hover:text-green-300 transition-colors"
-            style={{ textShadow: scrolled ? "0 0 12px #4ade80" : "0 0 30px #4ade80, 0 0 60px #16a34a" }}
+            style={{
+              textShadow: scrolled
+                ? "0 0 12px #4ade80"
+                : "0 0 30px #4ade80, 0 0 60px #16a34a",
+            }}
           >
             &gt; DEVTERM_
           </button>
